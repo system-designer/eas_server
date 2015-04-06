@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">  
+<configuration>
+	<settings>
+	    <setting name="lazyLoadingEnabled" value="false" />
+	</settings>
+
+    <typeAliases>
+		<!-- 账号功能模块 -->
+		<typeAlias alias="UserInfo" type="com.eas.domain.UserInfo" />
+
+		<typeAlias alias="Device" type="com.eas.domain.Device" />
+    </typeAliases>
+
+    <mappers>
+		<!-- 账号功能模块 -->
+		<mapper resource="mysql/UserInfoMapper.xml" />
+
+		<mapper resource="mysql/DeviceMapper.xml" />
+    </mappers>
+
+</configuration>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.eas.dao.DeviceDao">
+	<resultMap id="DeviceMap" type="Device">
+	    <id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="status" column="status" />
+		<result property="uid" column="uid" />
+	    <result property="createdTime" column="createdTime"/>
+		<result property="lastUpdatedTime" column="lastUpdatedTime"/>
+	</resultMap>
+	<sql id="sqlColumns">
+		id,name,status,uid,createdTime,lastUpdatedTime
+	</sql>
+
+	<insert id="add" parameterType="Device">
+		insert into device (<include refid="sqlColumns" />)
+		values (#{id}, #{name}, #{status},#{uid},#{createdTime},#{lastUpdatedTime})
+	</insert>
+
+	<select id="getList" parameterType="map" resultMap="DeviceMap">
+		select
+		<include refid="sqlColumns" />
+		from device
+		where uid=#{uid}
+		order by createdTime desc
+		limit #{offset},#{size}
+	</select>
+
+	<select id="getCount" parameterType="map" resultType="long">
+		select count(id) from device where uid=#{uid}
+	</select>
+</mapper>
